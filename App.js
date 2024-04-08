@@ -46,23 +46,22 @@ export default function App() {
   }
 
   const handleSave = () => {
-    // Check if required fields are not empty
-   // Check if required fields are not empty
+   
    if (!firstname || !lastname || !email) {
     alert("Please fill in all fields");
     return;
   }
 
-  // Construct user object
+ 
   const user = {
     first_name: firstname,
     last_name: lastname,
     email: email
   };
 
-  // Check if id is set (editing existing user)
+
   if (id !== "") {
-    // Send PUT request to update user
+  
     fetch(`https://reqres.in/api/users/${id}`, {
       method: "PUT",
       headers: {
@@ -74,11 +73,11 @@ export default function App() {
     .then(res => res.json())
     .then(res => {
       console.log(res);
-      // Update user list with updated user
+     
       setList(list.map(item => item.id === id ? res : item));
-      // Close modal
+    
       setModalUser(false);
-      // Clear form
+    
       clearForm();
     })
     .catch(err => {
@@ -86,7 +85,7 @@ export default function App() {
       alert("Failed to update user");
     });
   } else {
-    // Send POST request to add new user
+   
     fetch("https://reqres.in/api/users", {
       method: "POST",
       headers: {
@@ -98,11 +97,11 @@ export default function App() {
     .then(res => res.json())
     .then(res => {
       console.log(res);
-      // Update user list with newly added user
+      
       setList([...list, res]);
-      // Close modal
+     
       setModalUser(false);
-      // Clear form
+      
       clearForm();
     })
     .catch(err => {
